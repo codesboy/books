@@ -1,0 +1,27 @@
+/* pages/tally/tally.wxss */
+
+
+/* picker{
+    border: 1px solid #ccc;
+} */
+.form-group{
+    display: flex;
+    align-items: center;
+    margin-top: 50rpx;
+    border-bottom: 1px solid #ccc;
+}
+.form-group textarea{
+    height: 70rpx;
+}
+.form-group text{
+    color: #f55860;
+    margin-left: 10rpx;
+    font-size: 30rpx;
+}
+.form-group input{
+    width: 75%; 
+    height: 70rpx;
+}
+.btn{
+    margin-top: 35rpx;
+}

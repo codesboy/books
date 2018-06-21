@@ -1,0 +1,29 @@
+{
+    "pages": [
+        "pages/tally/tally",
+        "pages/payback/payback",
+        "pages/analyse/analyse"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "WeChat",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "list": [
+            {
+                "pagePath": "pages/tally/tally",
+                "text": "记账"
+            },
+            {
+                "pagePath": "pages/payback/payback",
+                "text": "还账"
+            },
+            {
+                "pagePath": "pages/analyse/analyse",
+                "text": "统计"
+            }
+        ]
+    }
+}

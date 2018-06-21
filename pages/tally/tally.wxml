@@ -1,0 +1,38 @@
+<!--pages/tally/tally.wxml-->
+<view>
+    <form bindsubmit="formSubmit" bindreset="formReset">
+        
+        <view class='form-group'>
+            <text decode="{{true}}">姓&emsp;&emsp;名：</text>
+            <input type='text'></input>
+        </view>
+        <view class='form-group'>
+            <text decode="{{true}}">电&emsp;&emsp;话：</text>
+            <input type='number'></input>
+        </view>
+        <view class='form-group'>
+            <text>选择日期：</text>
+            <picker mode="date" value="{{date}}" bindchange="bindDateChange">
+                <input type='text' disabled value='{{date}}'></input>
+            </picker>
+        </view>
+        <view class='form-group'>
+            <text>选择货物：</text>
+            <picker value="{{date}}" bindchange="goodsPickerChange" value="{{index}}" range="{{array}}">
+                 <input type='text' disabled value='{{array[index]}}'></input> 
+                <!-- <text></text> -->
+            </picker>
+            <text>add</text>
+        </view>
+        <view class='form-group'>
+            <text decode="{{true}}">备&emsp;&emsp;注：</text>
+            <textarea auto-height/>
+        </view>
+        <view class='btn'>
+            <button type='primary' form-type='submit'>保存</button>
+        </view>
+            
+        
+    
+    </form>
+</view>
