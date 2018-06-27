@@ -18,11 +18,14 @@
         </view>
         <view class='form-group'>
             <text>选择货物：</text>
-            <picker value="{{date}}" bindchange="goodsPickerChange" value="{{index}}" range="{{array}}">
-                 <input type='text' disabled value='{{array[index]}}'></input> 
-                <!-- <text></text> -->
+            <picker value="{{date}}" bindchange="goodsPickerChange" value="{{index}}" range="{{goodsArray}}">
+                 <input type='text' disabled value='{{goodsArray[index]}}'></input> 
             </picker>
             <text>add</text>
+        </view>
+        <view class='form-group'>
+            <text>货物金额：</text>
+            <input type='digit'></input>
         </view>
         <view class='form-group'>
             <text decode="{{true}}">备&emsp;&emsp;注：</text>

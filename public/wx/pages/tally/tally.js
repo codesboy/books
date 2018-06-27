@@ -7,7 +7,7 @@ Page({
   data: {
       date:"",
       index:0,
-      array: ['美国', '中国', '巴西', '日本'],
+      goodsArray: ['饲料A', '饲料B', '饲料C', '饲料D'],
       objectArray: [
           {
               id: 0,

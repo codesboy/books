@@ -11,7 +11,7 @@
     border-bottom: 1px solid #ccc;
 }
 .form-group textarea{
-    height: 70rpx;
+    height: 100rpx;
 }
 .form-group text{
     color: #f55860;
