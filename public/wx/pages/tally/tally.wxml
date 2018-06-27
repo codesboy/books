@@ -21,7 +21,7 @@
             <picker value="{{date}}" bindchange="goodsPickerChange" value="{{index}}" range="{{goodsArray}}">
                  <input type='text' disabled value='{{goodsArray[index]}}'></input> 
             </picker>
-            <text>add</text>
+            <navigator url="/page/navigate/navigate?title=navigate" hover-class="navigator-hover">增加</navigator>
         </view>
         <view class='form-group'>
             <text>货物金额：</text>
