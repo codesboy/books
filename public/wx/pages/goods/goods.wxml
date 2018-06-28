@@ -1,0 +1,4 @@
+<!--pages/goods.wxml-->
+<view>
+    <input type='text'></input>
+</view>
