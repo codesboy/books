@@ -1,4 +1,23 @@
 <!--pages/goods.wxml-->
-<view>
-    <input type='text'></input>
+<view class='main'>
+    <view class='input-section'>
+        <label>货物名称：</label>
+        <input type='text'></input>
+    </view>
+    <view>
+        <button type='primary'>添加</button>
+    </view>
+    <view>
+        <text class='table-tit'>货物清单：</text>
+    </view>
+    <view class='table'>
+        <view class="tr">
+            <view class="th th1">货物名称</view>
+            <view class="th th2">添加时间</view>
+        </view>
+        <view class="tr" wx:for="{{15}}">
+            <view class="td td1">饲料1饲料1饲料1饲料1饲料1饲料1饲料1饲料1饲料1饲料1饲料1饲料1饲料1</view>
+            <view class="td td2">2018/02/12</view>
+        </view>
+    </view>
 </view>

@@ -9,12 +9,6 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 
-Route::get('think', function () {
-    return 'hello,ThinkPHP5!';
-});
 
-Route::get('hello/:name', 'index/hello');
-
-return [
-
-];
+//收货地址接口
+Route::post('api/:version/addgoods','api/:version.Goods/createOrUpdateGoods');

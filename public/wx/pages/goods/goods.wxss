@@ -1,1 +1,69 @@
 /* pages/goods.wxss */
+
+.main {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.input-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20rpx 0;
+}
+
+.input-section input {
+    flex: 1;
+    height: 70rpx;
+    border: 1px solid #ddd;
+    margin: 10rpx 0;
+    border-radius: 4rpx;
+}
+
+/* 表格代码   */
+
+.table-tit {
+    display: block;
+    text-align: center;
+    margin: 40rpx auto;
+}
+
+.table {
+    border: 1px solid #dadada;
+    border-right: 0;
+    border-bottom: 0;
+    width: 98%;
+    margin-left: 1%;
+}
+
+.tr {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.th, .td {
+    padding: 5px;
+    border-bottom: 1px solid #dadada;
+    border-right: 1px solid #dadada;
+    text-align: center;
+    width: 100%;
+}
+
+.th1, .td1 {
+    width: 70%;
+}
+.th2,.td2{
+    width: 30%;
+}
+.th {
+    font-weight: 800;
+    background-color: #fff;
+    font-size: 29rpx;
+    color: #330e0e;
+}
+
+.td {
+    font-size: 28rpx;
+    color: #f55860;
+}
