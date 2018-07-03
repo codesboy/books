@@ -1,12 +1,14 @@
 <!--pages/goods.wxml-->
 <view class='main'>
-    <view class='input-section'>
-        <label>货物名称：</label>
-        <input type='text'></input>
-    </view>
-    <view>
-        <button type='primary'>添加</button>
-    </view>
+    <form bindsubmit="formSubmit">
+        <view class='input-section'>
+            <label>货物名称：</label>
+            <input type='text' name="goods_name" value='{{inputValue}}'></input>
+        </view>
+        <view>
+            <button formType="submit" type='primary'>添加</button>
+        </view>
+    </form>
     <view>
         <text class='table-tit'>货物清单：</text>
     </view>
@@ -15,9 +17,9 @@
             <view class="th th1">货物名称</view>
             <view class="th th2">添加时间</view>
         </view>
-        <view class="tr" wx:for="{{15}}">
-            <view class="td td1">饲料1饲料1饲料1饲料1饲料1饲料1饲料1饲料1饲料1饲料1饲料1饲料1饲料1</view>
-            <view class="td td2">2018/02/12</view>
+        <view class="tr" wx:for="{{goodsData}}">
+            <view class="td td1">{{goodsData[index].goods_name}}</view>
+            <view class="td td2">{{goodsData[index].create_time}}</view>
         </view>
     </view>
 </view>

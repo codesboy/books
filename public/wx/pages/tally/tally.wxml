@@ -18,8 +18,8 @@
         </view>
         <view class='form-group goods-select'>
             <text>选择货物：</text>
-            <picker value="{{date}}" bindchange="goodsPickerChange" value="{{index}}" range="{{goodsArray}}">
-                 <input type='text' disabled value='{{goodsArray[index]}}'></input> 
+            <picker value="{{date}}" bindchange="goodsPickerChange" value="{{index}}" range-key="goods_name" range="{{goodsData}}">
+                 <input type='text' disabled value='{{goodsData[index].goods_name}}'></input> 
             </picker>
             <navigator class='add-btn' url="/pages/goods/goods">增加</navigator>
         </view>

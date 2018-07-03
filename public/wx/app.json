@@ -4,6 +4,7 @@
         "pages/payback/payback",
         "pages/analyse/analyse",
         "pages/goods/goods"
+        
     ],
     "window": {
         "backgroundTextStyle": "light",

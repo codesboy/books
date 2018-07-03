@@ -19,7 +19,8 @@ class Goods extends Base{
         return $addGood;
     }
     public function getGoods(){
-
+        $goods = GoodsModel::getGoods();
+        return $goods;
     }
 
 

@@ -10,5 +10,8 @@
 // +----------------------------------------------------------------------
 
 
-//收货地址接口
+//新增货物接口
 Route::post('api/:version/addgoods','api/:version.Goods/createOrUpdateGoods');
+
+// 获取货物接口
+Route::get('api/:version/getgoods','api/:version.Goods/getGoods');
