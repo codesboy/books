@@ -54,5 +54,24 @@ Page({
                 }
             }
         });
+    },
+    formSubmit:function(e){
+        console.log(e.detail.value);
+        wx.request({
+            url: app.globalData.baseUrl + 'adddebts',
+            method: 'POST',
+            data: e.detail.value,
+            success: (res) => {
+                console.log(res.data)
+            },
+            fail: function (e) {
+                console.log(e.errMsg)
+                wx.showToast({
+                    title: '发生错误',
+                    content:e.errMsg
+                    
+                })
+            }
+        })
     }
 })

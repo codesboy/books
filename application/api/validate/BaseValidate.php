@@ -15,10 +15,10 @@ class BaseValidate extends Validate{
         // $params = request()->post();
 
         $params=Request::param();
+        
 
         // $this就是validate对象 因为类继承了Validate
         $result=$this->batch()->check($params);//批量验证结果
-
         if(!$result){
             // 如果参数校验不通过 进行异常处理
             $e=new ParameterException([

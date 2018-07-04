@@ -42,3 +42,7 @@
 .btn{
     margin-top: 35rpx;
 }
+.placeholder{
+    font-size:24rpx;
+    color: #ccc;
+}

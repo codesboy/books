@@ -1,41 +1,42 @@
 <!--pages/tally/tally.wxml-->
 <view>
     <form bindsubmit="formSubmit" bindreset="formReset">
-        
+
         <view class='form-group'>
             <text decode="{{true}}">姓&emsp;&emsp;名：</text>
-            <input type='text'></input>
+            <input type='text' name="name"></input>
         </view>
         <view class='form-group'>
             <text decode="{{true}}">电&emsp;&emsp;话：</text>
-            <input type='number'></input>
+            <input type='number' name="phone"></input>
         </view>
         <view class='form-group'>
             <text>选择日期：</text>
             <picker mode="date" value="{{date}}" bindchange="bindDateChange">
-                <input type='text' disabled value='{{date}}'></input>
+                <input type='text' disabled value='{{date}}' name="debts_time"></input>
             </picker>
         </view>
         <view class='form-group goods-select'>
             <text>选择货物：</text>
             <picker value="{{date}}" bindchange="goodsPickerChange" value="{{index}}" range-key="goods_name" range="{{goodsData}}">
-                 <input type='text' disabled value='{{goodsData[index].goods_name}}'></input> 
+                <input type='text' disabled hidden value='{{goodsData[index].id}}' name="goods_id"></input>
+                <text>{{goodsData[index].goods_name}}</text>
             </picker>
             <navigator class='add-btn' url="/pages/goods/goods">增加</navigator>
         </view>
         <view class='form-group'>
-            <text>货物金额：</text>
-            <input type='digit'></input>
+            <text>欠款金额：</text>
+            <input type='digit' name="debts_money" placeholder="最多保留两位小数，单位为元" placeholder-class="placeholder"></input>
         </view>
         <view class='form-group'>
             <text decode="{{true}}">备&emsp;&emsp;注：</text>
-            <textarea auto-height/>
+            <textarea auto-height name="comment"/>
         </view>
         <view class='btn'>
             <button type='primary' form-type='submit'>保存</button>
         </view>
-            
-        
-    
+
+
+
     </form>
 </view>

@@ -15,3 +15,6 @@ Route::post('api/:version/addgoods','api/:version.Goods/createOrUpdateGoods');
 
 // 获取货物接口
 Route::get('api/:version/getgoods','api/:version.Goods/getGoods');
+
+// 新增欠款记录
+Route::post('api/:version/adddebts','api/:version.Customer/createCustomer');

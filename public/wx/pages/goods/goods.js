@@ -106,10 +106,19 @@ Page({
                     goodsData: oldData,
                     inputValue:''
                 });
+                wx.showModal({
+                    title: '添加成功！',
+                    duration: 3000,
+                    showCancel: false
+                });
 
             },
             fail: function (e) {
-                console.log(e.errMsg)
+                wx.showModal({
+                    title: '发生错误！',
+                    content: e.errMsg,
+                    showCancel: false
+                })
             },
             complete: function () {
                 wx.stopPullDownRefresh();
