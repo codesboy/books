@@ -25,14 +25,17 @@ CREATE TABLE `zsl_customer_debts` (
   `cid` int(10) unsigned NOT NULL COMMENT '欠款人id',
   `goods_id` int(10) unsigned NOT NULL COMMENT '货物id',
   `debts_money` decimal(10,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '欠款金额',
-  `debts_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '欠款时间',
+  `payback_money` decimal(10,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '还款金额',
+  `happen_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '交易时间',
   `comment` varchar(250) DEFAULT NULL COMMENT '备注',
   `create_time` int(11) unsigned NOT NULL DEFAULT '0',
   `update_time` int(11) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `zsl_customer_debts` */
+
+insert  into `zsl_customer_debts`(`id`,`cid`,`goods_id`,`debts_money`,`payback_money`,`happen_time`,`comment`,`create_time`,`update_time`) values (2,2,2,'55.00','0.00',1530720000,'r',1530799020,1530799020),(3,3,2,'0.00','0.00',1530720000,'r',1530799276,1530799276);
 
 /*Table structure for table `zsl_customer_info` */
 
@@ -45,9 +48,11 @@ CREATE TABLE `zsl_customer_info` (
   `create_time` int(11) unsigned NOT NULL DEFAULT '0',
   `update_time` int(11) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `zsl_customer_info` */
+
+insert  into `zsl_customer_info`(`id`,`name`,`phone`,`create_time`,`update_time`) values (2,'wa','',1530799020,1530799020),(3,'wa','',1530799276,1530799276);
 
 /*Table structure for table `zsl_goods` */
 

@@ -6,7 +6,7 @@ class CustomerNew extends BaseValidate{
         'name'=>'require|isNotEmpty',
         'phone'=>'isMobile',
         'goods_id'=>'require|positiveInteger',
-        'debts_time'=>'require|dateFormat:Y-m-d',
+        'happen_time'=>'require|dateFormat:Y-m-d',
         'debts_money'=>'require|float'
     ];
 
@@ -14,7 +14,7 @@ class CustomerNew extends BaseValidate{
         'name'=>'请填写姓名！',
         'phone'=>'请填写正确的11位手机号！',
         'goods_id'=>'请选择货物',
-        'debts_time'=>'请选择时间',
+        'happen_time'=>'请选择时间',
         'debts_money'=>'请填写欠款金额'
     ];
         // 测试数据

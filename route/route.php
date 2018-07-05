@@ -18,3 +18,6 @@ Route::get('api/:version/getgoods','api/:version.Goods/getGoods');
 
 // 新增欠款记录
 Route::post('api/:version/adddebts','api/:version.Customer/createCustomer');
+
+// 还账
+Route::post('api/:version/payback','api/:version.Customer/payback');

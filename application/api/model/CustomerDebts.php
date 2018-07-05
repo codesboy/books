@@ -9,5 +9,10 @@ class CustomerDebts extends Base{
 
     protected $dateFormat = 'Y-m-d';//输出时间戳格式
 
+    // 写入时间格式转换
+    protected $type = [
+        "debts_time"=>'timestamp',
+    ];
+
 
 }

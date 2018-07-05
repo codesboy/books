@@ -1,10 +1,14 @@
 <!--pages/payback.wxml-->
 <view class='main'>
-    <form>
+    <form bindsubmit="formSubmit">
         <text>客户姓名或手机号：</text>
-        <input type='text' class='search-input'></input>
-        <text>还款金额：</text>
-        <input type='text' class='search-input'></input>
-        <button>确认还账</button>
+        <input type='text' name="keyword"></input>
+        <text>还账金额：</text>
+        <input type='digit' name="payback_money"></input>
+        <text>还账日期：</text>
+        <picker mode="date" value="{{date}}" bindchange="bindDateChange">
+            <input type='text' disabled value='{{date}}' name="happen_time"></input>
+        </picker>
+        <button type='primary' form-type='submit'>确认还账</button>
     </form>
 </view>

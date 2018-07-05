@@ -1,7 +1,9 @@
 <?php
 namespace app\api\controller\v1;
 use app\api\validate\CustomerNew;
+use app\api\validate\CustomerDebts;
 use app\api\model\CustomerInfo;
+use app\lib\exception\CustomerException;
 // 货物
 class Customer extends Base{
 
@@ -37,6 +39,24 @@ class Customer extends Base{
         $c = CustomerInfo::get(1);
         dump($c->debts);
     }
+    
+    // 还账
+    public function payback(){
+        $validate = new CustomerDebts();
+        $validate->doCheck();
+        $dataArray=$validate->getDataByRule(input('post.'));//获取用户提交的地址信息
 
+        $customer = customerInfo::getCustomerByNameOrPhone($dataArray['keyword']);
+        if(!$customer){
+            throw new CustomerException();
+        }
+        // dump($customer);die;
+        $rs=$customer->debts()->save([
+            'payback_money'=>$dataArray['payback_money'],
+            'happen_time'=>$dataArray['happen_time']
+        ]);
+        dump($re);
+
+    }
 
 }
