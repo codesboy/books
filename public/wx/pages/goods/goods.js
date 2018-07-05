@@ -106,10 +106,9 @@ Page({
                     goodsData: oldData,
                     inputValue:''
                 });
-                wx.showModal({
+                wx.showToast({
                     title: '添加成功！',
                     duration: 3000,
-                    showCancel: false
                 });
 
             },

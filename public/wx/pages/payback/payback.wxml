@@ -1,2 +1,10 @@
 <!--pages/payback.wxml-->
-<text>pages/payback.wxml</text>
+<view class='main'>
+    <form>
+        <text>客户姓名或手机号：</text>
+        <input type='text' class='search-input'></input>
+        <text>还款金额：</text>
+        <input type='text' class='search-input'></input>
+        <button>确认还账</button>
+    </form>
+</view>

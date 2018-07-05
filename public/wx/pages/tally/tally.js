@@ -42,7 +42,6 @@ Page({
                 this.setData({
                     goodsData:res.data
                 })
-
             },
             fail: function (e) {
                 console.log(e.errMsg)
@@ -55,6 +54,7 @@ Page({
             }
         });
     },
+    // 提交表单
     formSubmit:function(e){
         console.log(e.detail.value);
         wx.request({
@@ -63,13 +63,24 @@ Page({
             data: e.detail.value,
             success: (res) => {
                 console.log(res.data)
+                if(res.data.error_code){
+                    wx.showModal({
+                        title: '信息填写有误，请检查！',
+                        content: JSON.stringify(res.data.msg),
+                        showCancel: false
+                    });
+                }else{
+                    wx.showToast({
+                        title: '保存成功！',
+                        duration:2500
+                    })
+                }
             },
             fail: function (e) {
-                console.log(e.errMsg)
-                wx.showToast({
+                wx.showModal({
                     title: '发生错误',
-                    content:e.errMsg
-                    
+                    content: JSON.stringify(e.errMsg),
+                    showCancel: false                 
                 })
             }
         })

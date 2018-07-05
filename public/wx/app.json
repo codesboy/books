@@ -1,7 +1,7 @@
 {
     "pages": [
-        "pages/tally/tally",
         "pages/payback/payback",
+        "pages/tally/tally",
         "pages/analyse/analyse",
         "pages/goods/goods"
         
