@@ -1,83 +1,97 @@
 <?php
 namespace app\api\validate;
-use think\Validate;
-use think\Exception;
+
 use app\lib\exception\ParameterException;
-// use think\Request;
+use think\Exception;
 use think\facade\Request;
+use think\Validate;
 
-class BaseValidate extends Validate{
-// class BaseValidate{
-    public function doCheck(){
-        // 获取所有http参数
-        
-        // return Request::param();
-        // $params = request()->post();
-
-        $params=Request::param();
-        
-
-        // $this就是validate对象 因为类继承了Validate
-        $result=$this->batch()->check($params);//批量验证结果
-        if(!$result){
-            // 如果参数校验不通过 进行异常处理
-            $e=new ParameterException([
-                'msg'=>$this->error,
-            ]);
-            throw $e;//抛出自定义异常
-
-        }else{
+class BaseValidate extends Validate
+{
+    //获取http传入的参数
+    //检验参数
+    public function goCheck()
+    {
+        $request = Request::instance();
+        $params = $request->param();
+        $result = $this->check($params);
+        if (!$result) {
+            $error = $this->error;
+            throw new ParameterException(['msg' => $error]);
+//            throw new Exception($error);
+        } else {
             return true;
         }
     }
 
-    // 只获取验证器里设置的参数
-    public function getDataByRule($arrays){
-        if(array_key_exists('user_id',$arrays) | array_key_exists('uid',$arrays)){
-            // 不允许包含user_id或者uid 防止恶意覆盖user_id外键
+    //根据验证规则过滤数据
+    public function getDataByRule($params)
+    {
+        if (array_key_exists('user_id', $params) || array_key_exists('uid', $params)) {
             throw new ParameterException([
-                'msg'=>'参数中包含有非法的参数名user_id或id'
+                'msg' => '参数中包含非法参数名user_uid或者uid'
             ]);
         }
-        $newArray=[];
-        foreach ($this->rule as $key => $value) {
-            $newArray[$key]=$arrays[$key];
+        $newParams = [];
+        foreach ($this->rule as $k => $v) {
+            $newParams[$k] = $params[$k];
         }
-        return $newArray;
+        return $newParams;
     }
 
+    //根据验证规则过滤数据
+    public function getDataByRule2($params, $filter = [])
+    {
+        if (!empty($filter)) {
+            foreach ($filter as $k => $v) {
+                if (array_key_exists($v, $params)) {
+                    throw new ParameterException([
+                        'msg' => '参数中包含非法参数名:' . $v
+                    ]);
+                }
+            }
+        }
 
-    // 自定义验证规则 验证正整数
-    protected function positiveInteger($value){
-        if(is_numeric($value) && is_int($value+0) && ($value+0)>0){
+        $newParams = [];
+        foreach ($this->rule as $k => $v) {
+            $newParams[$k] = $params[$k];
+        }
+        return $newParams;
+    }
+
+    //必须是正整数
+    protected function isPositiveInteger($value, $rule = '', $date = '', $field = '')
+    {
+        if (is_numeric($value) && is_int($value + 0) && ($value + 0) > 0) {
             return true;
-        }else{
-            // return 'id必须是正整数';
+        } else {
+//            return $field . '必须是正整数';
             return false;
         }
     }
 
-    // 自定义验证规则 验证不能为空值
-    protected function isNotEmpty($value,$rule='',$data='',$field=''){
-        if(empty($value)){
-            return false;
-        }else{
-            return true;
-        }
+    //值不为空
+    protected function isNotEmpty($value, $rule = '', $date = '', $field = '')
+    {
+        /* if(empty($value)){
+             return false;
+         }else{
+             return true;
+         }*/
+
+        return empty($value) ? false : true;
     }
 
-    // 自定义验证规则 验证手机号
-    protected function isMobile($value){
-        $rule='^1(3|4|5|7|8)[0-9]\d{8}$^';
-        $result=preg_match($rule, $value);
-        if($result){
+    //验证手机号
+    protected  function isMobile($value)
+    {
+        $rule = '^1(1|3|4|5|7|8)[0-9]\d{8}$^';
+        $result = preg_match($rule, $value);
+        if ($result) {
             return true;
-        }else{
+        } else {
             return false;
         }
-
-        // return $result;
     }
-
 
 }

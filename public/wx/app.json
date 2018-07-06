@@ -1,8 +1,8 @@
 {
     "pages": [
+        "pages/analyse/analyse",
         "pages/payback/payback",
         "pages/tally/tally",
-        "pages/analyse/analyse",
         "pages/goods/goods"
         
     ],

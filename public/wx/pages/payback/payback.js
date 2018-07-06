@@ -9,6 +9,8 @@ Page({
      */
     data: {
         date: "",
+        form_value:"",
+        debtsData:""
     },
     bindDateChange: function(e) {
         console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -19,6 +21,7 @@ Page({
     // 提交表单
     formSubmit: function (e) {
         // console.log(e.detail.value);
+        var _this = this;
         wx.request({
             url: app.globalData.baseUrl + 'payback',
             method: 'POST',
@@ -33,8 +36,13 @@ Page({
                     });
                 } else {
                     wx.showToast({
-                        title: '保存成功！',
+                        title: '还账成功！',
                         duration: 2500
+                    });
+                    // 清空表单
+                    _this.setData({
+                        form_value:"",
+                        debtsData: res.data
                     })
                 }
             },

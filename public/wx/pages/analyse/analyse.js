@@ -1,23 +1,37 @@
 // pages/analyse/analyse.js
-Component({
-  /**
-   * 组件的属性列表
-   */
-  properties: {
-
-  },
+//获取应用实例
+const app = getApp();
+Page({
 
   /**
-   * 组件的初始数据
+   * 初始数据
    */
   data: {
-
+    data:""
   },
+    onShow:function(){
+        this.loadData();
+    },
 
-  /**
-   * 组件的方法列表
-   */
-  methods: {
+    loadData() {
+        wx.request({
+            url: app.globalData.baseUrl + 'getalldebts',
+            method: 'GET',
+            success: (res) => {
+                this.setData({
+                    data: res.data
+                })
 
-  }
+            },
+            fail: function (e) {
+                console.log(e.errMsg)
+            },
+            complete: function () {
+                wx.stopPullDownRefresh();
+                if (wx.hideLoading) {
+                    wx.hideLoading();
+                }
+            }
+        });
+    },
 })

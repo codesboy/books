@@ -11,8 +11,13 @@ class CustomerDebts extends Base{
 
     // 写入时间格式转换
     protected $type = [
-        "debts_time"=>'timestamp',
+        "happen_time"=>'timestamp',
     ];
+
+    public function goods()
+    {
+        return $this->belongsTo('Goods','goods_id');
+    }
 
 
 }

@@ -5,9 +5,10 @@ class CustomerNew extends BaseValidate{
     protected $rule=[
         'name'=>'require|isNotEmpty',
         'phone'=>'isMobile',
-        'goods_id'=>'require|positiveInteger',
+        'goods_id'=>'require|isPositiveInteger',
         'happen_time'=>'require|dateFormat:Y-m-d',
-        'debts_money'=>'require|float'
+        'debts_money'=>'require|float',
+        'comment'=>'isNotEmpty'
     ];
 
     protected $message=[

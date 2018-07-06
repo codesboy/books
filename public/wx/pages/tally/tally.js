@@ -7,7 +7,8 @@ Page({
      * 组件的初始数据
      */
     data: {
-        date: "",
+        date:'',
+        form_value: '',
         index: 0,
         goodsData: null
     },
@@ -57,23 +58,28 @@ Page({
     // 提交表单
     formSubmit:function(e){
         console.log(e.detail.value);
+        var _this = this;
         wx.request({
             url: app.globalData.baseUrl + 'adddebts',
             method: 'POST',
             data: e.detail.value,
             success: (res) => {
                 console.log(res.data)
-                if(res.data.error_code){
+                if(res.data.cid){
+                    wx.showToast({
+                        title: '保存成功！',
+                        duration: 2500
+                    });
+                    // 清空表单
+                    _this.setData({
+                        form_value:""
+                    })                 
+                }else{
                     wx.showModal({
                         title: '信息填写有误，请检查！',
                         content: JSON.stringify(res.data.msg),
                         showCancel: false
                     });
-                }else{
-                    wx.showToast({
-                        title: '保存成功！',
-                        duration:2500
-                    })
                 }
             },
             fail: function (e) {

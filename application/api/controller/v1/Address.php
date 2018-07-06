@@ -1,60 +1,58 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: yanfaone
+ * Date: 2017/6/30 0030
+ * Time: 17:04
+ */
+
 namespace app\api\controller\v1;
-use app\api\validate\AddressNew;
-use app\api\service\Token as TokenService;
+
+
+use app\api\controller\BaseController;
 use app\api\model\User as UserModel;
-use app\lib\exception\UserException;
+use app\api\service\Token as TokenService;
+use app\api\validate\AddressNew;
 use app\lib\exception\SuccessMessage;
-use app\lib\enum\ScopeEnum;
-use app\lib\exception\ForbiddenException;
+use app\lib\exception\UserException;
+use think\Controller;
 
-// 写入客户地址接口
-class Address extends Base{
-
-    //前置操作
-    protected $beforeActionList=[
-        // 在调用createOrUpdateAddress接口之前先执行checkPrimaryScope方法
-        'checkPrimaryScope'=>['only'=>'createOrUpdateAddress']
+class Address extends BaseController
+{
+    protected $beforeActionList = [
+        'checkPrimaryScope' => ['only' => 'createOrUpdateAddress']
     ];
 
 
-
     /**
-     * 需要一定的权限才能访问此接口
-     * [createOrUpdateAddress 创建或更新客户收货地址]
-     * @return [type] [description]
+     * 创建或更新地址
+     * @return \think\response\Json
+     * @throws UserException
+     * @throws \app\lib\exception\ParameterException
      */
-    public function createOrUpdateAddress(){
-        $validate=new AddressNew();
-        $validate->doCheck();
-        // (new AddressNew())->doCheck();
+    public function createOrUpdateAddress()
+    {
+        $addressNew = new AddressNew();
+        $addressNew->goCheck();
 
-        // 1.根据token来获取uid
-        // 2.根据uid来查找用户数据，判断用户是否存在，不存在就抛出异常
-        // 3.获取用户从客户端提交来的地址信息
-        // 4.根据用户地址信息是否存在，从而判断是添加操作还是更新操作
+        $uid = TokenService::getCurrentUid();//获取用户ID
+        $user = UserModel::get($uid);//查询用户
 
-        $uid=TokenService::getCurrentUID();
-
-        $user=UserModel::get($uid);
-        if(!$user){
+        if (!$user) {
             throw new UserException();
         }
+        $data = input('post.');
+//        $filterData =$addressNew->getDataByRule($data);//过滤数据
+        $filterData = $addressNew->getDataByRule2($data, ['user_id', 'uid']);//过滤数据
 
-        $dataArray=$validate->getDataByRule(input('post.'));//获取用户提交的地址信息
-        /*{"name":"rehack","mobile":"13544448876","province":"四川","city":"成都","country":"锦江","detail":"明宇"}*/
-
-        $userAddress=$user->address;
-        if(!$userAddress){
-            $user->address()->save($dataArray);//新增
-        }else{
-            $user->address->save($dataArray);//更新
+        $userAddress = $user->address;//通过关联模型查找 用户地址
+        if (!$userAddress) { //不存在 新增
+            $user->address()->save($filterData);
+        } else { //存在 更新
+            $user->address->save($filterData);
         }
-
-        // return $user;
+//        return $user;
+//        return 'success';
         return json(new SuccessMessage(),201);
-
     }
-
-
 }

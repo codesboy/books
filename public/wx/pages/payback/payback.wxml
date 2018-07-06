@@ -2,13 +2,34 @@
 <view class='main'>
     <form bindsubmit="formSubmit">
         <text>客户姓名或手机号：</text>
-        <input type='text' name="keyword"></input>
+        <input type='text' name="keyword" value='{{form_value}}'></input>
         <text>还账金额：</text>
-        <input type='digit' name="payback_money"></input>
+        <input type='digit' name="payback_money" value='{{form_value}}'></input>
         <text>还账日期：</text>
         <picker mode="date" value="{{date}}" bindchange="bindDateChange">
             <input type='text' disabled value='{{date}}' name="happen_time"></input>
         </picker>
+        <text>备注：</text>
+        <textarea auto-height name="comment" value='{{form_value}}' />
         <button type='primary' form-type='submit'>确认还账</button>
     </form>
+    <view class='debts_detail' wx:if="{{debtsData}}">
+        <text>{{debtsData.name}} {{debtsData.phone}} 欠款明细</text>
+        <view class='table'>
+            <view class="tr">
+                <view class="th th1">货物名称</view>
+                <view class="th th1">欠款金额</view>
+                <view class="th th2">还款金额</view>
+                <view class='th'>备注</view>
+                <view class="th th2">交易时间</view>
+            </view>
+            <view class="tr" wx:for="{{debtsData.debts}}">
+                <view class="td td1">{{debtsData.debts[index].goods.goods_name}}</view>
+                <view class="td td1">{{debtsData.debts[index].debts_money}}</view>
+                <view class="td td2">{{debtsData.debts[index].payback_money}}</view>
+                <view class="td td2">{{debtsData.debts[index].comment}}</view>
+                <view class="td td2">{{debtsData.debts[index].happen_time}}</view>
+            </view>
+        </view>
+    </view>
 </view>

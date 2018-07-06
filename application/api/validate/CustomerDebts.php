@@ -5,7 +5,8 @@ class CustomerDebts extends BaseValidate{
     protected $rule=[
         'keyword'=>'require|isNotEmpty',
         'payback_money'=>'require|float',
-        'happen_time'=>'require|dateFormat:Y-m-d'
+        'happen_time'=>'require|dateFormat:Y-m-d',
+        'comment'=>'isNotEmpty'
     ];
 
     protected $message=[

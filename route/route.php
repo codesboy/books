@@ -21,3 +21,7 @@ Route::post('api/:version/adddebts','api/:version.Customer/createCustomer');
 
 // 还账
 Route::post('api/:version/payback','api/:version.Customer/payback');
+
+
+// 获取所有欠款记录
+Route::get('api/:version/getalldebts','api/:version.Customer/getAllDebts');

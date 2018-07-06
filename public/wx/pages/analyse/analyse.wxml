@@ -1,2 +1,18 @@
 <!--pages/analyse/analyse.wxml-->
-<text>pages/analyse/analyse.wxml</text>
+<view class='main'>
+    <text class='tit'>欠款清单</text>
+    <view class='table'>
+        <view class="tr">
+            <view class="th">姓名</view>
+            <view class="th">手机号</view>
+            <view class="th">欠款金额</view>
+            <view class="th">添加时间</view>
+        </view>
+        <view class="tr" wx:for="{{data}}">
+            <view class="td">{{data[index].name}}</view>
+            <view class="td">{{data[index].phone}}</view>
+            <view class="td" wx:for=}}>{{data[index].phone}}</view>
+            <view class="td">{{data[index].create_time}}</view>
+        </view>
+    </view>
+</view>

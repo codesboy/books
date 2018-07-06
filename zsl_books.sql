@@ -31,11 +31,11 @@ CREATE TABLE `zsl_customer_debts` (
   `create_time` int(11) unsigned NOT NULL DEFAULT '0',
   `update_time` int(11) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `zsl_customer_debts` */
 
-insert  into `zsl_customer_debts`(`id`,`cid`,`goods_id`,`debts_money`,`payback_money`,`happen_time`,`comment`,`create_time`,`update_time`) values (2,2,2,'55.00','0.00',1530720000,'r',1530799020,1530799020),(3,3,2,'0.00','0.00',1530720000,'r',1530799276,1530799276);
+insert  into `zsl_customer_debts`(`id`,`cid`,`goods_id`,`debts_money`,`payback_money`,`happen_time`,`comment`,`create_time`,`update_time`) values (1,1,2,'600.00','0.00',1530806400,'w',1530862461,1530862461),(2,1,0,'0.00','100.00',1530892800,'3',1530862500,1530862500);
 
 /*Table structure for table `zsl_customer_info` */
 
@@ -47,12 +47,13 @@ CREATE TABLE `zsl_customer_info` (
   `phone` varchar(11) NOT NULL COMMENT '电话',
   `create_time` int(11) unsigned NOT NULL DEFAULT '0',
   `update_time` int(11) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQUE` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `zsl_customer_info` */
 
-insert  into `zsl_customer_info`(`id`,`name`,`phone`,`create_time`,`update_time`) values (2,'wa','',1530799020,1530799020),(3,'wa','',1530799276,1530799276);
+insert  into `zsl_customer_info`(`id`,`name`,`phone`,`create_time`,`update_time`) values (1,'aa','',1530862461,1530862461);
 
 /*Table structure for table `zsl_goods` */
 

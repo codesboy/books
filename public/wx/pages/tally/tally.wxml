@@ -4,11 +4,11 @@
 
         <view class='form-group'>
             <text decode="{{true}}">姓&emsp;&emsp;名：</text>
-            <input type='text' name="name"></input>
+            <input type='text' name="name" value='{{form_value}}'></input>
         </view>
         <view class='form-group'>
             <text decode="{{true}}">电&emsp;&emsp;话：</text>
-            <input type='number' name="phone"></input>
+            <input type='number' name="phone" value='{{form_value}}'></input>
         </view>
         <view class='form-group'>
             <text>选择日期：</text>
@@ -26,11 +26,11 @@
         </view>
         <view class='form-group'>
             <text>欠款金额：</text>
-            <input type='digit' name="debts_money" placeholder="最多保留两位小数，单位为元" placeholder-class="placeholder"></input>
+            <input type='digit' name="debts_money" placeholder="最多保留两位小数，单位为元" placeholder-class="placeholder" value='{{form_value}}'></input>
         </view>
         <view class='form-group'>
             <text decode="{{true}}">备&emsp;&emsp;注：</text>
-            <textarea auto-height name="comment"/>
+            <textarea auto-height name="comment" value='{{form_value}}'/>
         </view>
         <view class='btn'>
             <button type='primary' form-type='submit'>保存</button>
