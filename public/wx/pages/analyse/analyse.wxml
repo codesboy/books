@@ -1,4 +1,13 @@
 <!--pages/analyse/analyse.wxml-->
+<wxs module="m1">
+    var getDebts = function(arr) {
+        arr.reduce(function(result,item,index,arr){
+        return result+item;
+        })
+    }
+
+    module.exports.getDebts = getDebts;
+</wxs>
 <view class='main'>
     <text class='tit'>欠款清单</text>
     <view class='table'>
@@ -11,8 +20,33 @@
         <view class="tr" wx:for="{{data}}">
             <view class="td">{{data[index].name}}</view>
             <view class="td">{{data[index].phone}}</view>
-            <view class="td" wx:for=}}>{{data[index].phone}}</view>
+            
+
+             <view class="td">{{m1.getDebts([2,4])}}</view> 
             <view class="td">{{data[index].create_time}}</view>
         </view>
     </view>
 </view>
+
+<!-- <view class="td">{{m1.getDebts(debts.debts_money,debts.payback_money)}}</view> -->
+<wxs module="m2">
+    var getDebts = function(item) {
+        item+=item;
+        return item;
+    }
+
+    module.exports.getDebts = getDebts;
+</wxs>
+<view wx:for="{{[1,2,3]}}" wx:for-item="a">
+    {{m2.getDebts(a)}}
+</view>
+
+
+
+<!-- <block wx:for="{{data[index].debts}}" wx:for-item="debts">
+            </block> -->
+                <!-- <view>{{debts.debts_money+=debts.debts_money}}</view> -->
+
+            <!-- <template is="objectCombine" data="{{debtsData1}}">
+             <view class="td">{{getDebts}}</view> 
+            </template> -->

@@ -7,7 +7,8 @@ Page({
    * 初始数据
    */
   data: {
-    data:""
+    data:"",
+    // debtsData:""
   },
     onShow:function(){
         this.loadData();
@@ -19,7 +20,8 @@ Page({
             method: 'GET',
             success: (res) => {
                 this.setData({
-                    data: res.data
+                    data: res.data,
+                    // debtsData:res.data.debts
                 })
 
             },
