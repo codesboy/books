@@ -9,8 +9,8 @@ class Goods extends Base{
 
         $validate=new GoodsNew();
 
-        $validate->doCheck();
-        // dump($validate->doCheck());
+        $validate->goCheck();
+        // dump($validate->goCheck());
         // die;
         $dataArray=$validate->getDataByRule(input('post.'));
         

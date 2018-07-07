@@ -12,8 +12,8 @@ class CustomerDebts extends Base{
     // 写入时间格式转换
     protected $type = [
         "happen_time"=>'timestamp',
-        'debts_money'=>'float',
-        'payback_money'=>'float'
+        // 'debts_money'=>'float',
+        // 'payback_money'=>'float'
     ];
 
     public function goods()

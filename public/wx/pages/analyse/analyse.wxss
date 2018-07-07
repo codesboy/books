@@ -45,5 +45,8 @@
 
 .td {
     font-size: 28rpx;
+     color: green;
+}
+.td3{
     color: #f55860;
 }

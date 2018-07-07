@@ -57,14 +57,14 @@ Page({
     },
     // 提交表单
     formSubmit:function(e){
-        console.log(e.detail.value);
+        // console.log(e.detail.value);
         var _this = this;
         wx.request({
             url: app.globalData.baseUrl + 'adddebts',
             method: 'POST',
             data: e.detail.value,
             success: (res) => {
-                console.log(res.data)
+                // console.log(res.data)
                 if(res.data.cid){
                     wx.showToast({
                         title: '保存成功！',

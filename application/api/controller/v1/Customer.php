@@ -84,7 +84,7 @@ class Customer extends Base{
 
     // 获取所有欠款记录
     public function getAllDebts(){
-        $data = CustomerInfo::with('debts,debts.goods')->select();
+        $data = CustomerInfo::with('debts,debts.goods')->order('create_time','desc')->select();
         return $data;
     }
 

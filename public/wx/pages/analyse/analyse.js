@@ -8,7 +8,7 @@ Page({
      */
     data: {
         data: "",
-        last_debts:0
+        last_debts: 0
         // debtsData:""
     },
     onShow: function() {
@@ -43,27 +43,42 @@ Page({
 
     // 数据运算处理
     dataOperation: (data) => {
-        let arr=[];
+        let arr = [];
         for (let i in data) {
-        let c = 0;
+            let c = 0;
             for (let j in data[i].debts) {
-                let a = data[i].debts[j].debts_money;
-                let b = data[i].debts[j].payback_money;
-                let r = a - b;
-                c += r;
-                // console.log(c)
+                let a = parseFloat(data[i].debts[j].debts_money);
+                let b = parseFloat(data[i].debts[j].payback_money);
+                // let r = a-b
+                let r = (a * 100 - b * 100) / 100; //注意浮点数计算精度问题
+                c = (c * 100 + r * 100) / 100; //注意浮点数计算精度问题
+                // console.log(r)
             }
-            arr.push(c);
+            // arr.push(c.toFixed(2));
+            arr.push(c)
         }
         return arr;
     },
 
-    readDetail:(e)=>{
-        console.log()
-        let cid = e.currentTarget.dataset.id;
-        wx.navigateTo({
-            url: 'detail/detail?cid='+cid,
+    // 跳转详细页面
+    readDetail: (e) => {
+        let debts_detail = JSON.stringify(e.currentTarget.dataset.debts);
+        // console.log(debts_detail)
+        wx.setStorage({
+            key: 'debts_detail',
+            data: debts_detail,
+        });
+
+        wx.getStorage({
+            key: 'debts_detail',
+            success: function() {
+                wx.navigateTo({
+                    // url: 'detail/detail?debts_detail=' + debts_detail,
+                    url: 'detail/detail',
+                })
+            }
         })
+
     }
 
 

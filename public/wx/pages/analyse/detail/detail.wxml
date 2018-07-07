@@ -1,3 +1,32 @@
 <!--pages/analyse/detail/detail.wxml-->
-<text>pages/analyse/detail/detail.wxml</text>
-sd
+
+<view class='info'>
+    <text>{{debts_detail.name}} {{debts_detail.phone}}</text>
+</view>
+<view class='table'>
+    <view class="tr">
+        <view class="th">货物名称</view>
+        <view class="th">欠账金额</view>
+        <view class="th">还账金额</view>
+        <view class="th">交易时间</view>
+        <view class="th th5">备注</view>
+    </view>
+    <view class="tr" wx:key="index" wx:for="{{debts_detail.debts}}">
+        <view class="td">{{item.goods.goods_name}}</view>
+        <view class="td">{{item.debts_money}} 元</view>
+        <view class="td">{{item.payback_money}} 元</view>
+        <view class="td">{{item.happen_time}}</view>
+        <view class="td td5">{{m1.sub(item.comment)}}</view>
+    </view>
+</view>
+
+<wxs module="m1">
+    var sub = function(str) {
+        if (str.length >= 7) {
+            var newstr = str.substring(0, 7);
+            return newstr + '...';
+        }
+        return str;
+    }
+    module.exports.sub = sub;
+</wxs>

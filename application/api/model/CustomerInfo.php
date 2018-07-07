@@ -15,8 +15,6 @@ class CustomerInfo extends Base{
 
     // 根据姓名或手机号查询
     public static function getCustomerByNameOrPhone($keyword){
-        // $customer = self::where('name|phone',$keyword)->fetchSql()->select();
-        // $customer = self::with('debts')->where('name|phone',$keyword)->select();
         $customer = self::where('name|phone',$keyword)->find();
         if(empty($customer)){
             return false;

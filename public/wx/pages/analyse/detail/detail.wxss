@@ -1,1 +1,51 @@
 /* pages/analyse/detail/detail.wxss */
+.info{
+    text-align: center;
+    border-bottom: 1px dashed #f55860;
+    margin-bottom: 30rpx;
+}
+/* 表格代码   */
+
+.table-tit {
+    display: block;
+    text-align: center;
+    margin: 40rpx auto;
+}
+
+.table {
+    border: 1px solid #dadada;
+    border-right: 0;
+    border-bottom: 0;
+    width: 98%;
+    margin-left: 1%;
+    table-layout: fixed;
+}
+
+.tr {
+    width: 100%;
+    display:table-row;
+    table-layout: fixed;
+}
+
+.th, .td {
+    width: 20%;
+    display:table-cell;
+    padding: 5px;
+    border-bottom: 1px solid #dadada;
+    border-right: 1px solid #dadada;
+    text-align: center;
+    vertical-align:middle;
+}
+
+.th {
+    font-weight: 800;
+    background-color: #fff;
+    font-size: 29rpx;
+    color: #330e0e;
+}
+
+.td {
+    /* height:80rpx; */
+    font-size: 28rpx;
+    color: #f55860;
+}

@@ -5,16 +5,16 @@
         <view class="tr">
             <view class="th">姓名</view>
             <view class="th">手机号</view>
-            <view class="th">欠款金额</view>
+            <view class="th">总欠款金额</view>
             <view class="th">登记时间</view>
             <view class="th">操作</view>
         </view>
         <view class="tr" wx:key="index" wx:for="{{data}}">
             <view class="td">{{data[index].name}}</view>
             <view class="td">{{data[index].phone}}</view>
-            <view class="td">{{last_debts[index]}} 元</view>
+            <view class="td td3">{{last_debts[index]}} 元</view>
             <view class="td">{{data[index].create_time}}</view>
-            <view class="td" bindtap="readDetail" data-id="{{item.id}}">详情></view>
+            <view class="td" bindtap="readDetail" data-debts="{{data[index]}}">详情></view>
         </view>
     </view>
 </view>

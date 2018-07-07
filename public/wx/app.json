@@ -1,9 +1,9 @@
 {
     "pages": [
-        "pages/analyse/analyse",
-        "pages/payback/payback",
         "pages/tally/tally",
+        "pages/payback/payback",
         "pages/goods/goods",
+        "pages/analyse/analyse",
         "pages/analyse/detail/detail"
     ],
     "window": {
