@@ -3,8 +3,8 @@
         "pages/analyse/analyse",
         "pages/payback/payback",
         "pages/tally/tally",
-        "pages/goods/goods"
-        
+        "pages/goods/goods",
+        "pages/analyse/detail/detail"
     ],
     "window": {
         "backgroundTextStyle": "light",

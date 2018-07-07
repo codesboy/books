@@ -1,5 +1,6 @@
 /* pages/analyse/analyse.wxss */
-.tit{
+
+.tit {
     display: block;
     text-align: center;
 }
@@ -22,18 +23,18 @@
 
 .tr {
     width: 100%;
-    display: flex;
-    justify-content: space-between;
+    display:table-row;
 }
 
 .th, .td {
+    width: 20%;
+    display:table-cell;
     padding: 5px;
     border-bottom: 1px solid #dadada;
     border-right: 1px solid #dadada;
     text-align: center;
-    width: 100%;
+    vertical-align:middle;
 }
-
 
 .th {
     font-weight: 800;
