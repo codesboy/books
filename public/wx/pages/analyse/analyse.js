@@ -40,22 +40,29 @@ Page({
             }
         });
     },
-
+    toFixe:function (num, s) {
+        var times = Math.pow(10, s)
+    var des = num * times + 0.5
+    des = parseInt(des, 10) / times
+    return des + ''
+    },
     // 数据运算处理
     dataOperation: (data) => {
+        var _this = this;
         let arr = [];
         for (let i in data) {
             let c = 0;
             for (let j in data[i].debts) {
                 let a = parseFloat(data[i].debts[j].debts_money);
                 let b = parseFloat(data[i].debts[j].payback_money);
-                // let r = a-b
-                let r = (a * 100 - b * 100) / 100; //注意浮点数计算精度问题
-                c = (c * 100 + r * 100) / 100; //注意浮点数计算精度问题
-                // console.log(r)
+                let r = a-b
+                // let r = (a * 10 - b * 10) / 10; //注意浮点数计算精度问题
+                // c = (c * 10 + r * 10) / 10; //注意浮点数计算精度问题
+                c+=r
+                // console.log(c)
             }
-            // arr.push(c.toFixed(2));
-            arr.push(c)
+            // arr.push(_this.toFixe(c,2));
+            arr.push(c.toFixed(2))
         }
         return arr;
     },
