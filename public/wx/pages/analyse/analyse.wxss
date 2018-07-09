@@ -1,8 +1,34 @@
 /* pages/analyse/analyse.wxss */
 
+.search view {
+    height: 80rpx;
+    margin: 15px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.search input {
+    width: 70%;
+    height:80rpx;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    padding-left: 7px;
+}
+.search button{
+    margin: 0;
+    height: 100%;
+    line-height: 80rpx;
+}
+.placeholder{
+    font-size:26rpx;
+    color: #ccc;
+}
 .tit {
     display: block;
     text-align: center;
+    margin-top: 50rpx;
+    margin-bottom: 20rpx;
 }
 
 /* 表格代码   */
@@ -14,7 +40,7 @@
 }
 
 .table {
-    border: 1px solid #dadada;
+    border: 1px solid #bbb;
     border-right: 0;
     border-bottom: 0;
     width: 98%;
@@ -23,17 +49,17 @@
 
 .tr {
     width: 100%;
-    display:table-row;
+    display: table-row;
 }
 
 .th, .td {
     width: 20%;
-    display:table-cell;
+    display: table-cell;
     padding: 5px;
-    border-bottom: 1px solid #dadada;
-    border-right: 1px solid #dadada;
+    border-bottom: 1px solid #bbb;
+    border-right: 1px solid #bbb;
     text-align: center;
-    vertical-align:middle;
+    vertical-align: middle;
 }
 
 .th {
@@ -45,8 +71,9 @@
 
 .td {
     font-size: 28rpx;
-     color: green;
+    color: green;
 }
-.td3{
+
+.td3 {
     color: #f55860;
 }

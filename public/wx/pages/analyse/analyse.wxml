@@ -1,5 +1,27 @@
 <!--pages/analyse/analyse.wxml-->
 <view class='main'>
+    <form class='search' bindsubmit="formSubmit">
+        <view>
+            <input type='text' placeholder='姓名或手机号' placeholder-class='placeholder' name='search_key' value='{{form_value}}'></input>
+            <button size='mini' type='primary' form-type='submit'>查询</button>
+        </view>
+    </form>
+    <view class='table' wx:if="{{searchData}}">
+        <view class="tr">
+            <view class="th">姓名</view>
+            <view class="th">手机号</view>
+            <view class="th">总欠款金额</view>
+            <view class="th">登记时间</view>
+            <view class="th">操作</view>
+        </view>
+        <view class="tr">
+            <view class="td">{{searchData.name}}</view>
+            <view class="td">{{searchData.phone}}</view>
+            <view class="td td3">{{searchLastDebts}} 元</view>
+            <view class="td">{{searchData.create_time}}</view>
+            <view class="td" bindtap="readDetail" data-debts="{{searchData}}">详情</view>
+        </view>
+    </view>
     <text class='tit'>欠款清单</text>
     <view class='table'>
         <view class="tr">
@@ -14,11 +36,7 @@
             <view class="td">{{data[index].phone}}</view>
             <view class="td td3">{{last_debts[index]}} 元</view>
             <view class="td">{{data[index].create_time}}</view>
-            <view class="td" bindtap="readDetail" data-debts="{{data[index]}}">详情></view>
+            <view class="td" bindtap="readDetail" data-debts="{{data[index]}}">详情</view>
         </view>
     </view>
 </view>
-
-
-
-

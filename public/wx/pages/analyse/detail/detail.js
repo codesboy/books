@@ -31,6 +31,19 @@ Page({
         
     },
 
+    // 显示完整备注内容
+    showAllComment:(e)=>{
+        // console.log(e)
+        let comment = e.currentTarget.dataset.comment;
+        if(comment.length>7){
+            wx.showModal({
+                title: '',
+                content: comment,
+                showCancel: false
+            })
+        }
+        
+    },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */

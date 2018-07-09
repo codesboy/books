@@ -7,9 +7,11 @@ Page({
      * 初始数据
      */
     data: {
-        data: "",
-        last_debts: 0
-        // debtsData:""
+        data: null, //所有数据
+        last_debts: 0, //总欠款金额
+        searchData: null, //查询出来的数据
+        searchLastDebts:null,
+        form_value:""
     },
     onShow: function() {
         this.loadData();
@@ -40,29 +42,20 @@ Page({
             }
         });
     },
-    toFixe:function (num, s) {
-        var times = Math.pow(10, s)
-    var des = num * times + 0.5
-    des = parseInt(des, 10) / times
-    return des + ''
-    },
-    // 数据运算处理
+    // 欠款金额数据运算处理
     dataOperation: (data) => {
-        var _this = this;
         let arr = [];
         for (let i in data) {
             let c = 0;
             for (let j in data[i].debts) {
                 let a = parseFloat(data[i].debts[j].debts_money);
                 let b = parseFloat(data[i].debts[j].payback_money);
-                let r = a-b
-                // let r = (a * 10 - b * 10) / 10; //注意浮点数计算精度问题
-                // c = (c * 10 + r * 10) / 10; //注意浮点数计算精度问题
-                c+=r
+                let r = a - b;
+                c += r;
                 // console.log(c)
             }
             // arr.push(_this.toFixe(c,2));
-            arr.push(c.toFixed(2))
+            arr.push(c.toFixed(2)); //注意浮点数计算精度问题
         }
         return arr;
     },
@@ -86,7 +79,55 @@ Page({
             }
         })
 
-    }
+    },
+
+    // 查询、
+    formSubmit: function(e) {
+        let searchKey = e.detail.value;
+        let data = this.data.data;
+        if (data) {
+            var rs = this.search(data, searchKey.search_key);
+            if(rs){
+                this.setData({
+                    searchData: rs,
+                    searchLastDebts: this.dataOperation2(rs.debts),
+                    form_value:""
+                })
+            }else{
+                wx.showToast({
+                    title: '未查询到该客户！',
+                    icon:'none'
+                });
+                this.setData({
+                    searchData:null
+                })
+            }
+            
+        }
+    },
+    // 查询json数据进行欠款金额运算
+    dataOperation2: (data) => {
+        let c = 0;
+        for (let i in data) {
+            let a = parseFloat(data[i].debts_money);
+            let b = parseFloat(data[i].payback_money);
+            let r = a - b;
+            c += r;
+            // console.log(c)
+        }
+        // arr.push(_this.toFixe(c,2));
+        return c.toFixed(2); //注意浮点数计算精度问题
+
+    },
+
+    // 从json中查询数据函数
+    search: function(arr, v) {
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i]['name'] == v || arr[i]['phone'] == v) {
+                return arr[i];
+            }
+        }
+    },
 
 
 })
