@@ -10,7 +10,8 @@ Page({
         date:'',
         form_value: '',
         index: 0,
-        goodsData: null
+        goodsData: null,
+        tempFilePaths:''
     },
 
     onShow: function () {
@@ -90,5 +91,40 @@ Page({
                 })
             }
         })
-    }
+    },
+    // 图片上传
+    upload:function(){
+        let _this = this;
+        wx.chooseImage({
+            count:1,
+            sizeType: ['compressed'],
+            success: function (res) {
+                var tempFilePaths = res.tempFilePaths;
+                console.log(tempFilePaths)
+                _this.setData({
+                    tempFilePaths: tempFilePaths
+                });
+                // wx.uploadFile({
+                //     url: 'https://example.weixin.qq.com/upload', //仅为示例，非真实的接口地址
+                //     filePath: tempFilePaths[0],
+                //     name: 'file',
+                //     formData: {
+                //         'user': 'test'
+                //     },
+                //     success: function (res) {
+                //         var data = res.data
+                //         console.log(data)
+                //         //do something
+                //     }
+                // })
+            },
+            fail:function(e){
+                wx.showModal({
+                    title: 'error',
+                    content: e.msg,
+                })
+            }
+        })
+    },
+    
 })

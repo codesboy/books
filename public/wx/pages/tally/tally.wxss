@@ -7,7 +7,7 @@
 .form-group{
     display: flex;
     align-items: center;
-    margin-top: 50rpx;
+    margin-top: 20rpx;
     border-bottom: 1px solid #ccc;
 }
 .form-group textarea{
@@ -45,4 +45,19 @@
 .placeholder{
     font-size:24rpx;
     color: #ccc;
+}
+.upload-img{
+    /* text-align: left; */
+    display: flex;
+    /* justify-content: space-between; */
+}
+.upload-img button{
+    margin: 0 50px 0 0;
+    font-size: 30rpx;
+    color: #f55860;
+}
+.upload-img image{
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
 }

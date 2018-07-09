@@ -25,12 +25,22 @@
             <navigator class='add-btn' url="/pages/goods/goods">增加</navigator>
         </view>
         <view class='form-group'>
+            <text>拿货数量：</text>
+            <input type='number' name='quantity'></input>
+        </view>
+        <view class='form-group'>
             <text>欠款金额：</text>
             <input type='digit' name="debts_money" placeholder="最多保留两位小数，单位为元" placeholder-class="placeholder" value='{{form_value}}'></input>
         </view>
         <view class='form-group'>
             <text decode="{{true}}">备&emsp;&emsp;注：</text>
             <textarea auto-height name="comment" value='{{form_value}}'/>
+        </view>
+        <view class='form-group upload-img'>
+            <button bindtap='upload'>上传照片</button>
+            <block wx:for="{{tempFilePaths}}" wx:key="{{index}}">
+                <image src='{{item}}'></image>
+            </block>
         </view>
         <view class='btn'>
             <button type='primary' form-type='submit'>保存</button>
