@@ -6,6 +6,8 @@ class CustomerNew extends BaseValidate{
         'name'=>'require|isNotEmpty',
         'phone'=>'isMobile',
         'goods_id'=>'require|isPositiveInteger',
+        'quantity'=>'require|isPositiveInteger',
+        'img_id'=>'require|isPositiveInteger',
         'happen_time'=>'require|dateFormat:Y-m-d',
         'debts_money'=>'require|float',
         'comment'=>'isNotEmpty'

@@ -38,9 +38,10 @@
         </view>
         <view class='form-group upload-img'>
             <button bindtap='upload'>上传照片</button>
-            <block wx:for="{{tempFilePaths}}" wx:key="{{index}}">
-                <image src='{{item}}'></image>
-            </block>
+            <!-- <block wx:for="{{}}" wx:key="{{index}}"> -->
+                <image src='{{tempFilePaths}}' data-url='{{tempFilePaths}}' bindtap='previewImg'></image>
+            <!-- </block> -->
+            <input type='text' hidden name='img_id' value='{{img_id}}'></input>
         </view>
         <view class='btn'>
             <button type='primary' form-type='submit'>保存</button>

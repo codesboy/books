@@ -21,5 +21,10 @@ class CustomerDebts extends Base{
         return $this->belongsTo('Goods','goods_id');
     }
 
+    // 关联图片表
+    public function images()
+    {
+        return $this->belongsTo('Images','img_id');
+    }
 
 }

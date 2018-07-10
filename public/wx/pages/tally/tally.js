@@ -11,7 +11,8 @@ Page({
         form_value: '',
         index: 0,
         goodsData: null,
-        tempFilePaths:''
+        tempFilePaths:'',
+        img_id:0,//上传图片id
     },
 
     onShow: function () {
@@ -58,14 +59,14 @@ Page({
     },
     // 提交表单
     formSubmit:function(e){
-        // console.log(e.detail.value);
+        console.log(e.detail.value);
         var _this = this;
         wx.request({
             url: app.globalData.baseUrl + 'adddebts',
             method: 'POST',
             data: e.detail.value,
             success: (res) => {
-                // console.log(res.data)
+                console.log(res.data)
                 if(res.data.cid){
                     wx.showToast({
                         title: '保存成功！',
@@ -99,18 +100,61 @@ Page({
             count:1,
             sizeType: ['compressed'],
             success: function (res) {
-                var tempFilePaths = res.tempFilePaths;
-                console.log(tempFilePaths)
+                // console.log(res)
+                var tempFilePaths = res.tempFilePaths[0];
+                // console.log(tempFilePaths.toLowerCase().split('.').splice(-1))
+
+                var strRegex = "(.jpg|.png|.gif|.jpeg)$"; //用于验证图片扩展名的正则表达式
+                var re = new RegExp(strRegex);
+
+                if (!re.test(tempFilePaths)){
+                    wx.showModal({
+                        title: '',
+                        content: '非法图片格式',
+                        showCancel: false
+                    });
+                    return false;
+                }
+                if (res.tempFiles[0].size > 8388608){
+                    wx.showModal({
+                        title: '',
+                        content: '图片大小不能超过8M',
+                        showCancel:false
+                    });
+                    return false;
+                }
+                
                 _this.setData({
                     tempFilePaths: tempFilePaths
                 });
-                // wx.uploadFile({
-                //     url: 'https://example.weixin.qq.com/upload', //仅为示例，非真实的接口地址
-                //     filePath: tempFilePaths[0],
-                //     name: 'file',
-                //     formData: {
-                //         'user': 'test'
-                //     },
+                wx.uploadFile({
+                    url: app.globalData.baseUrl + 'upload',
+                    method:'POST',
+                    
+                    // header: {
+                    //     'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+                    // },
+                    filePath: tempFilePaths,
+                    name: 'image',
+                    success: function (res) {
+                        if(res.data>0){
+                            _this.setData({
+                                img_id:res.data
+                            })
+                            wx.showModal({
+                                title: '',
+                                content: '图片上传成功',
+                                showCancel:false
+                            })
+                        }
+                    },
+                    fail:function(e){
+                        console.log(e)
+                    }
+                })
+                // wx.request({
+                //     url: app.globalData.baseUrl + 'upload',
+                //     method: 'POST',
                 //     success: function (res) {
                 //         var data = res.data
                 //         console.log(data)
@@ -127,4 +171,11 @@ Page({
         })
     },
     
+    // 点击预览大图片
+    previewImg:function(e){
+        wx.previewImage({
+            current: e.currentTarget.dataset.url, // 当前显示图片的http链接
+            urls: [this.data.tempFilePaths] // 需要预览的图片http链接列表
+        })
+    }
 })

@@ -16,8 +16,8 @@
         </view>
         <view class="tr">
             <view class="td">{{searchData.name}}</view>
-            <view class="td">{{searchData.phone}}</view>
-            <view class="td td3">{{searchLastDebts}} 元</view>
+            <view class="td" bindtap='call' data-phone='{{searchData.phone}}'>{{searchData.phone}}</view>
+            <view class="td td3">{{searchLastDebts}}</view>
             <view class="td">{{searchData.create_time}}</view>
             <view class="td" bindtap="readDetail" data-debts="{{searchData}}">详情</view>
         </view>
@@ -33,8 +33,8 @@
         </view>
         <view class="tr" wx:key="index" wx:for="{{data}}">
             <view class="td">{{data[index].name}}</view>
-            <view class="td">{{data[index].phone}}</view>
-            <view class="td td3">{{last_debts[index]}} 元</view>
+            <view class="td" bindtap='call' data-phone='{{data[index].phone}}'>{{data[index].phone}}</view>
+            <view class="td td3">{{last_debts[index]}}</view>
             <view class="td">{{data[index].create_time}}</view>
             <view class="td" bindtap="readDetail" data-debts="{{data[index]}}">详情</view>
         </view>

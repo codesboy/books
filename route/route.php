@@ -25,3 +25,7 @@ Route::post('api/:version/payback','api/:version.Customer/payback');
 
 // 获取所有欠款记录
 Route::get('api/:version/getalldebts','api/:version.Customer/getAllDebts');
+
+// 上传
+// Route::post('api/:version/upload1','api/:version.Customer/uploadImage');
+Route::post('api/:version/upload','api/:version.Customer/upload');

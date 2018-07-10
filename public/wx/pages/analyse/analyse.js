@@ -129,5 +129,16 @@ Page({
         }
     },
 
+    // 点击拨打电话
+    call:function(e){
+        let phone = e.currentTarget.dataset.phone;
+        if(phone){
+            wx.makePhoneCall({
+                phoneNumber: phone
+            })
+        }
+        
+    }
+
 
 })

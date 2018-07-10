@@ -2,8 +2,11 @@
 namespace app\api\controller\v1;
 use app\api\validate\CustomerNew;
 use app\api\validate\CustomerDebts;
+use app\api\validate\ImgUpload as UploadValidate;
 use app\api\model\CustomerInfo;
+use app\api\model\Images;
 use app\lib\exception\CustomerException;
+use app\lib\exception\UploadException;
 use think\Db;
 // 客户
 class Customer extends Base{
@@ -24,6 +27,7 @@ class Customer extends Base{
         // 查询客户是否已经存在
         $customer = customerInfo::getCustomerByNameOrPhone($dataArray['name']);
         
+
         // 启动事务
         Db::startTrans();
         try{
@@ -36,13 +40,17 @@ class Customer extends Base{
                 $addInfo = CustomerInfo::create($infoData);
             }
 
-
+            
+            
             $rs = $addInfo->debts()->save([
                 'goods_id'=>$dataArray['goods_id'],
                 'happen_time'=>$dataArray['happen_time'],
                 'debts_money'=>$dataArray['debts_money'],
-                'comment'=>$dataArray['comment']
+                'quantity'=>$dataArray['quantity'],
+                'comment'=>$dataArray['comment'],
+                'img_id'=>$dataArray['img_id']
             ]);
+            // dump($rs);exit;
             // 提交事务
             Db::commit();
             return $rs;
@@ -88,4 +96,54 @@ class Customer extends Base{
         return $data;
     }
 
+    // 上传图片
+    public function upload(){
+        $file = request()->file('image');
+        // dump($file);
+        if(!$file){
+            throw new UploadException([
+                'code'=>0,
+                'msg'=>'没有选择图片或者图片超过post_max_size、upload_max_filesize大小'
+            ]);
+        };
+
+        $validate=new UploadValidate();
+        // 针对getimagesize(): Read error!异常
+        try {
+            // 上传文件验证
+            $result=$validate->check(['file' => $file]);
+        } catch (\Exception $e) {
+            throw new UploadException([
+                'code'=>0,
+                'msg'=>$e->getMessage()
+            ]);
+        }
+
+        // 验证不通过
+        if(true !== $result){
+            // dump(UploadException);die;
+            throw new UploadException([
+                // 'msg'=>$this->error($result);
+                'code'=>0,
+                'msg'=>$validate->getError()
+            ]);
+        }
+
+        $info = $file->move( '../uploads');
+        if($info){
+            // return $info->getSaveName();
+            $url =  $info->getSaveName();
+            //写入数据库
+            // $images = new Images();
+            $images=Images::create([
+                "url"=>$url
+            ]);
+            return $images->id;
+        }else{
+            // 上传失败获取错误信息
+            echo $file->getError();
+        }
+        
+        // echo 1;
+    }
 }
