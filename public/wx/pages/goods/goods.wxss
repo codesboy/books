@@ -67,3 +67,18 @@
     font-size: 28rpx;
     color: #f55860;
 }
+
+/*复选框*/
+.checkbox{
+    /* display: flex; */
+    font-size: 26rpx;
+    /* border-bottom:1px solid #000; */
+    padding-bottom: 5px;
+    margin-bottom: 30px;
+    margin-top:30px;
+}
+.checkbox input{
+    border:1px solid #ccc;
+    margin-top: 8px;
+    border-radius: 5px;
+}

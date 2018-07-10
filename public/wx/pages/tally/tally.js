@@ -11,7 +11,7 @@ Page({
         form_value: '',
         index: 0,
         goodsData: null,
-        tempFilePaths:'',
+        tempFilePaths:null,
         img_id:0,//上传图片id
     },
 
@@ -59,7 +59,7 @@ Page({
     },
     // 提交表单
     formSubmit:function(e){
-        console.log(e.detail.value);
+        // console.log(e.detail.value);
         var _this = this;
         wx.request({
             url: app.globalData.baseUrl + 'adddebts',

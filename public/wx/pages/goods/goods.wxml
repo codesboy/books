@@ -10,6 +10,16 @@
         </view>
     </form>
     <view>
+        <checkbox-group bindchange="checkboxChange">
+            <view class="checkbox" wx:key='index' wx:for="{{goodsData}}">
+                <checkbox value="{{[item.id,quantity,unit_price]}}" color='green'/>
+                <text>{{item.goods_name}}</text>
+                <input type='text' bindinput='bindKeyInput' data-id='{{item.id}}' data-name='quantity' placeholder='数量'></input>
+                <input type='text' bindinput='bindKeyInput' data-id='{{item.id}}' data-name='unit_price' placeholder='单价'></input>
+            </view>
+        </checkbox-group>
+    </view>
+    <view>
         <text class='table-tit'>货物清单：</text>
     </view>
     <view class='table'>
@@ -17,7 +27,7 @@
             <view class="th th1">货物名称</view>
             <view class="th th2">添加时间</view>
         </view>
-        <view class="tr" wx:for="{{goodsData}}">
+        <view class="tr" wx:key='index' wx:for="{{goodsData}}">
             <view class="td td1">{{goodsData[index].goods_name}}</view>
             <view class="td td2">{{goodsData[index].create_time}}</view>
         </view>
