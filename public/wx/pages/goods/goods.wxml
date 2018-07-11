@@ -10,14 +10,24 @@
         </view>
     </form>
     <view>
-        <checkbox-group bindchange="checkboxChange">
-            <view class="checkbox" wx:key='index' wx:for="{{goodsData}}">
-                <checkbox value="{{[item.id,quantity,unit_price]}}" color='green'/>
+        <template name="objectCombine">
+            <!-- <text>{{item}}</text> -->
+            
+                
+            
+        </template>
+
+
+        <view class="checkbox" wx:key='index' wx:for="{{checkedData}}">
+            <checkbox-group bindchange="checkboxChange" data-index='{{index}}'>
+                <checkbox value="{{index}}" color='green' checked="{{item.checked}}" />
                 <text>{{item.goods_name}}</text>
-                <input type='text' bindinput='bindKeyInput' data-id='{{item.id}}' data-name='quantity' placeholder='数量'></input>
-                <input type='text' bindinput='bindKeyInput' data-id='{{item.id}}' data-name='unit_price' placeholder='单价'></input>
-            </view>
-        </checkbox-group>
+                <input type='number' bindinput='bindKeyInput' data-index='{{index}}' data-name='quantity' placeholder='数量'></input>
+                <input type='number' bindinput='bindKeyInput' data-index='{{index}}' data-name='unit_price' placeholder='单价'></input>
+            </checkbox-group>
+        </view>
+
+
     </view>
     <view>
         <text class='table-tit'>货物清单：</text>

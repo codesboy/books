@@ -179,3 +179,17 @@ Page({
         })
     }
 })
+
+// [
+//     {
+//         "checkbox_id": 1,
+//         "shuliang": 2,
+//         "danjia": "10.5"
+//     },
+//     {
+//         "checkbox_id": 2,
+//         "shuliang": 5,
+//         "danjia": "15.5"
+//     },
+
+// ]

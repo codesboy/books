@@ -9,10 +9,8 @@ Page({
     data: {
         inputValue:'',
         goodsData: [],
-        quantity:1,//数量
-        unit_price:0,//单价
-        arr:null,
-        checkedData:[]//选中的数据
+        checkedData:null,//选中的数据
+        totalMoney:0
     },
 
     /**
@@ -43,7 +41,8 @@ Page({
             method: 'GET',
             success: (res) => {
                 this.setData({
-                    goodsData: res.data
+                    goodsData: res.data,
+                    checkedData:res.data
                 })
 
             },
@@ -61,9 +60,16 @@ Page({
 
     // 提交表单
     formSubmit(e){
-        // console.log(e.detail.value);
-        var _this = this;
-        // console.log(this)
+        let _this = this;
+        let goods_name = e.detail.value.goods_name;
+        if(goods_name==''){
+            wx.showModal({
+                title: '',
+                content: '货物名称不能为空！',
+                showCancel:false
+            });
+            return false;
+        }
         wx.request({
             url: app.globalData.baseUrl + 'addgoods',
             method: 'POST',
@@ -99,43 +105,47 @@ Page({
 
     // 复选框
     checkboxChange: function (e) {
+        let index = e.currentTarget.dataset.index;
         console.log('checkbox发生change事件，携带value值为：', e.detail.value)
-        app.globalData.checkedData=e.detail.value
-        console.log(app.globalData.checkedData)
+        console.log(e)
+        if(index){
+            let checked = `checkedData[${index}].checked`
+            this.setData({
+                [checked]: true
+            })
+        }else{
+
+        }
+        // app.globalData.checkedData=e.detail.value
+        // console.log(app.globalData.checkedData)
     },
 
     // 获取数量/单价
     bindKeyInput: function (e) {
-        // console.log(e)
-        // const app = getApp();思路 app存
-        let obj={
-            "goods_id": e.currentTarget.dataset.id,
-            "quantity":1,
-            "unit_price":0
-        };
-        // arr[0] = e.currentTarget.dataset.id
-        if (e.currentTarget.dataset.name =='unit_price'){
-            obj.unit_price = e.detail.value
+        let index = parseInt(e.currentTarget.dataset.index);
+        let checked = `checkedData[${index}].checked`
+        this.setData({
+            [checked]:true
+        })
+        if(e.detail.value==''){
             this.setData({
-                arr: obj
+                [checked]: false
             })
+        }
+        if (e.currentTarget.dataset.name =='quantity'){
+            // console.log(index)
+            let key = `checkedData[${index}].quantity`
             this.setData({
-                unit_price:e.detail.value
+                [key]:e.detail.value,
+
             })
-        } else if (e.currentTarget.dataset.name == 'quantity'){
-            obj.quantity = e.detail.value
+        } else if (e.currentTarget.dataset.name == 'unit_price'){
+            let key = `checkedData[${index}].unit_price`
             this.setData({
-                arr: obj
-            })
-            this.setData({
-                quantity: e.detail.value
+                [key]: e.detail.value
             })
         }
         
-        // var oldData = this.data.checkedData
-        // oldData.push(arr)
-        // this.setData({
-        //     checkedData:oldData
-        // })
+        
     },
 })

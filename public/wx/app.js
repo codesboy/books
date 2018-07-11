@@ -37,6 +37,5 @@ App({
     userInfo: null,
     baseUrl: "http://1.com/api/v1/",
     // baseUrl: "https://zsl.rehack.cn/api/v1/"
-    checkedData:[]
   }
 })

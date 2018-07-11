@@ -6,6 +6,8 @@
 <view class='table'>
     <view class="tr">
         <view class="th">货物名称</view>
+        <view class="th">数量</view>
+        <view class="th">单价</view>
         <view class="th">欠账金额</view>
         <view class="th">还账金额</view>
         <view class="th">交易时间</view>
@@ -13,8 +15,10 @@
     </view>
     <view class="tr" wx:key="index" wx:for="{{debts_detail.debts}}">
         <view class="td">{{item.goods.goods_name}}</view>
-        <view class="td">{{item.debts_money}} 元</view>
-        <view class="td">{{item.payback_money}} 元</view>
+        <view class="td">{{item.goods.quantity}}</view>
+        <view class="td">{{item.goods.unit_price}}</view>
+        <view class="td">{{item.debts_money}}</view>
+        <view class="td">{{item.payback_money}}</view>
         <view class="td">{{item.happen_time}}</view>
         <view class="td td5" bindtap='showAllComment' data-comment="{{item.comment}}">{{m1.sub(item.comment)}}</view>
     </view>
