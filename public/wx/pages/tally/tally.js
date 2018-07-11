@@ -13,15 +13,18 @@ Page({
         goodsData: null,
         tempFilePaths:null,
         img_id:0,//上传图片id
+        formData:null,//所有表单数据
+        checkedDebtsData:null
     },
 
     onShow: function () {
-        this.loadData();
+        // this.loadData();
     },
 
     /**
      * 组件的方法列表
      */
+    // 时间选择
     bindDateChange: function (e) {
         console.log('picker发送选择改变，携带值为', e.detail.value)
         this.setData({
@@ -29,45 +32,51 @@ Page({
         })
     },
     //选择货物
-    goodsPickerChange: function (e) {
-        console.log('picker发送选择改变，携带值为', e.detail.value)
-        this.setData({
-            index: e.detail.value
-        })
-    },
+    // goodsPickerChange: function (e) {
+    //     console.log('picker发送选择改变，携带值为', e.detail.value)
+    //     this.setData({
+    //         index: e.detail.value
+    //     })
+    // },
 
     //请求货物接口
-    loadData(){
-        wx.request({
-            url: app.globalData.baseUrl + 'getgoods',
-            method: 'GET',
-            success: (res) => {
-                this.setData({
-                    goodsData:res.data
-                })
-            },
-            fail: function (e) {
-                console.log(e.errMsg)
-            },
-            complete: function () {
-                wx.stopPullDownRefresh();
-                if (wx.hideLoading) {
-                    wx.hideLoading();
-                }
-            }
-        });
-    },
+    // loadData(){
+    //     wx.request({
+    //         url: app.globalData.baseUrl + 'getgoods',
+    //         method: 'GET',
+    //         success: (res) => {
+    //             this.setData({
+    //                 goodsData:res.data
+    //             })
+    //         },
+    //         fail: function (e) {
+    //             console.log(e.errMsg)
+    //         },
+    //         complete: function () {
+    //             wx.stopPullDownRefresh();
+    //             if (wx.hideLoading) {
+    //                 wx.hideLoading();
+    //             }
+    //         }
+    //     });
+    // },
     // 提交表单
     formSubmit:function(e){
-        // console.log(e.detail.value);
+        console.log(e.detail.value);
         var _this = this;
+        this.setData({
+            formData: e.detail.value
+        })
+        let postData = this.data.formData;
+        postData.debts=this.data.checkedDebtsData;
+        // return false
         wx.request({
             url: app.globalData.baseUrl + 'adddebts',
             method: 'POST',
-            data: e.detail.value,
+            data: postData,
             success: (res) => {
                 console.log(res.data)
-                if(res.data.cid){
+                if(res.data.length>0){
                     wx.showToast({
                         title: '保存成功！',
                         duration: 2500
@@ -179,17 +188,3 @@ Page({
         })
     }
 })
-
-// [
-//     {
-//         "checkbox_id": 1,
-//         "shuliang": 2,
-//         "danjia": "10.5"
-//     },
-//     {
-//         "checkbox_id": 2,
-//         "shuliang": 5,
-//         "danjia": "15.5"
-//     },
-
-// ]

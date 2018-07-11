@@ -42,18 +42,12 @@ class Customer extends Base{
 
             
             
-            $rs = $addInfo->debts()->save([
-                'goods_id'=>$dataArray['goods_id'],
-                'happen_time'=>$dataArray['happen_time'],
-                'debts_money'=>$dataArray['debts_money'],
-                'quantity'=>$dataArray['quantity'],
-                'comment'=>$dataArray['comment'],
-                'img_id'=>$dataArray['img_id']
-            ]);
+            $rs = $addInfo->debts()->saveAll($dataArray['debts']);
             // dump($rs);exit;
             // 提交事务
             Db::commit();
-            return $rs;
+            //saveAll方法新增数据返回的是包含新增模型（带自增ID）的数据集对象。
+            return json($rs);
         }catch (\Exception $e) {
             // 回滚事务
             Db::rollback();

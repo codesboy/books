@@ -27,17 +27,18 @@
     flex: 1;
 }
 .goods-select{
-     justify-content: space-between; 
+     /* justify-content: space-between;  */
 }
 .add-btn{
-    font-size: 26rpx;
+    width: 50%;
+    /* font-size: 26rpx;
     background: #179B16;
     color: #fff;
     width: 70rpx;
     height: 70rpx;
     line-height: 70rpx;
     text-align: center;
-    border-radius: 100%;
+    border-radius: 100%; */
 }
 .btn{
     margin-top: 35rpx;

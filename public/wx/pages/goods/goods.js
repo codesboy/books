@@ -58,7 +58,7 @@ Page({
         });
     },
 
-    // 提交表单
+    // 提交添加表单
     formSubmit(e){
         let _this = this;
         let goods_name = e.detail.value.goods_name;
@@ -109,7 +109,7 @@ Page({
         console.log('checkbox发生change事件，携带value值为：', e.detail.value)
         console.log(e)
         let checked = `checkedData[${index}].checked`
-        if (e.detail.value.length>0){
+        if (e.detail.value.length>0){//选中状态
             this.setData({
                 [checked]: true
             })
@@ -125,29 +125,76 @@ Page({
     // 获取数量/单价
     bindKeyInput: function (e) {
         let index = parseInt(e.currentTarget.dataset.index);
-        let checked = `checkedData[${index}].checked`
-        this.setData({
-            [checked]:true
-        })
-        if(e.detail.value==''){
+        let checked = `checkedData[${index}].checked`;
+        let quantity = `checkedData[${index}].quantity`;
+        let unit_price = `checkedData[${index}].unit_price`
+        // this.setData({
+        //     [quantity]: 0,
+        //     [unit_price]:0
+        // })
+        
+        if (e.currentTarget.dataset.name =='quantity'){
+            // console.log(index)
+            // let key = `checkedData[${index}].quantity`
+            this.setData({
+                [quantity]:e.detail.value,
+            })
+        } else if (e.currentTarget.dataset.name == 'unit_price'){
+            // let key = `checkedData[${index}].unit_price`
+            this.setData({
+                [unit_price]: e.detail.value
+            })
+        }
+        
+        
+        if (e.detail.value == '') {
             this.setData({
                 [checked]: false
             })
-        }
-        if (e.currentTarget.dataset.name =='quantity'){
-            // console.log(index)
-            let key = `checkedData[${index}].quantity`
+        }else{
             this.setData({
-                [key]:e.detail.value,
-
-            })
-        } else if (e.currentTarget.dataset.name == 'unit_price'){
-            let key = `checkedData[${index}].unit_price`
-            this.setData({
-                [key]: e.detail.value
+                [checked]: true
             })
         }
-        
         
     },
+
+    // 确认货物选择
+    confirmSelect(){
+        let checkedData = this.data.checkedData;
+        console.log(this.data.checkedData)
+        let arr=[];
+        
+        let totalMoney =0;//拿货的总金额
+        for(let i in checkedData){
+            if (checkedData[i].checked && checkedData[i].quantity && checkedData[i].unit_price){//验证是否选中和是否完整填写单价数量
+                // arr.push(arr2.push(checkedData[i].))
+                let itemMoney = parseInt(checkedData[i].quantity) * parseFloat(checkedData[i].unit_price);//计算本项金额
+                let obj = {};
+                obj.goods_id = checkedData[i].id;
+                obj.quantity = checkedData[i].quantity;
+                obj.unit_price = checkedData[i].unit_price;
+                obj.debts_money = itemMoney;
+                obj.unit_price = checkedData[i].unit_price;
+                totalMoney += itemMoney
+                arr.push(obj)
+            }else{
+                console.log('no')
+            }
+        }
+        
+        console.log(totalMoney.toFixed(2),arr)
+
+        let pages = getCurrentPages();
+        let prePage = pages[pages.length-2];//上一页面
+        prePage.setData({//把本页的数据传递到上一页面
+            checkedDebtsData:arr,
+            "formData.debts_money": totalMoney.toFixed(2)
+        });
+        wx.navigateBack({
+            delta: 1
+        })
+        console.log(pages.length)
+        console.log(prePage)
+    }
 })

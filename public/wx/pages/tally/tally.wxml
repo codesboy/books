@@ -18,19 +18,20 @@
         </view>
         <view class='form-group goods-select'>
             <text>选择货物：</text>
-            <picker value="{{date}}" bindchange="goodsPickerChange" value="{{index}}" range-key="goods_name" range="{{goodsData}}">
+            <!-- <picker value="{{date}}" bindchange="goodsPickerChange" value="{{index}}" range-key="goods_name" range="{{goodsData}}">
                 <input type='text' disabled hidden value='{{goodsData[index].id}}' name="goods_id"></input>
                 <text>{{goodsData[index].goods_name}}</text>
-            </picker>
-            <navigator class='add-btn' url="/pages/goods/goods">增加</navigator>
+            </picker> -->
+            <navigator class='add-btn' url="/pages/goods/goods">选择</navigator>
+            <input type='text' hidden name='debts' value='{{formData.debts}}'></input>
         </view>
-        <view class='form-group'>
+        <!-- <view class='form-group'>
             <text>拿货数量：</text>
             <input type='number' name='quantity'></input>
-        </view>
+        </view> -->
         <view class='form-group'>
-            <text>欠款金额：</text>
-            <input type='digit' name="debts_money" placeholder="最多保留两位小数，单位为元" placeholder-class="placeholder" value='{{form_value}}'></input>
+            <text>总欠金额：</text>
+            <input type='digit' disabled name='debts_money' value='{{formData.debts_money}}'></input>
         </view>
         <view class='form-group'>
             <text decode="{{true}}">备&emsp;&emsp;注：</text>
