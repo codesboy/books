@@ -108,13 +108,15 @@ Page({
         let index = e.currentTarget.dataset.index;
         console.log('checkbox发生change事件，携带value值为：', e.detail.value)
         console.log(e)
-        if(index){
-            let checked = `checkedData[${index}].checked`
+        let checked = `checkedData[${index}].checked`
+        if (e.detail.value.length>0){
             this.setData({
                 [checked]: true
             })
         }else{
-
+            this.setData({
+                [checked]: false
+            })
         }
         // app.globalData.checkedData=e.detail.value
         // console.log(app.globalData.checkedData)
