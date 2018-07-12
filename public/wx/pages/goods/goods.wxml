@@ -2,23 +2,17 @@
 <view class='main'>
     <view class="checkbox" wx:key='index' wx:for="{{checkedData}}">
         <checkbox-group bindchange="checkboxChange" data-index='{{index}}'>
-            <checkbox value="{{index}}" color='green' checked="{{item.checked}}" />
-            <text>{{item.goods_name}}</text>
-            <input type='number' bindinput='bindKeyInput' data-index='{{index}}' data-name='quantity' placeholder='数量'></input>
-            <input type='digit' bindinput='bindKeyInput' data-index='{{index}}' data-name='unit_price' placeholder='单价'></input>
+            <checkbox value="{{index}}" color='#f00' checked="{{item.checked}}" />
+
+            <text>{{item.id}}.{{item.goods_name}}</text>
+            <view class='item-inputs'>
+                <input type='number' bindinput='bindKeyInput' data-index='{{index}}' data-name='quantity' placeholder='数量'></input>
+                <input type='digit' bindinput='bindKeyInput' data-index='{{index}}' data-name='unit_price' placeholder='单价'></input>
+            </view>
+
         </checkbox-group>
     </view>
-    <view>
-        <form bindsubmit="formSubmit">
-            <view class='input-section'>
-                <label>货物名称：</label>
-                <input type='text' name="goods_name" value='{{inputValue}}'></input>
-            </view>
-            <view>
-                <button formType="submit" type='primary'>添加</button>
-            </view>
-        </form>
-    </view>
+
 
     <!-- <view>
         <text class='table-tit'>货物清单：</text>
@@ -35,6 +29,18 @@
     </view> -->
 </view>
 
+
+<view class='add-form'>
+    <form bindsubmit="formSubmit">
+        <view class='input-section'>
+            <label>货物名称：</label>
+            <input type='text' name="goods_name" value='{{inputValue}}'></input>
+        </view>
+        <view>
+            <button formType="submit" type='primary'>添加</button>
+        </view>
+    </form>
+</view>
 <view class='confirm-btn' bindtap='confirmSelect'>
-    <text>确认选择</text>
+    <text>确认\n选择</text>
 </view>

@@ -48,16 +48,18 @@ textarea{
 
 .tr {
     width: 100%;
-    display: flex;
-    justify-content: space-between;
+    display:table-row;
+    table-layout: fixed;
 }
 
 .th, .td {
-    padding: 5px;
+    /* width: 20%; */
+    display:table-cell;
+    padding: 3px; 
     border-bottom: 1px solid #dadada;
     border-right: 1px solid #dadada;
     text-align: center;
-    width: 100%;
+    vertical-align:middle;
 }
 
 

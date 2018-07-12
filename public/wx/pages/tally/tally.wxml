@@ -22,7 +22,7 @@
                 <input type='text' disabled hidden value='{{goodsData[index].id}}' name="goods_id"></input>
                 <text>{{goodsData[index].goods_name}}</text>
             </picker> -->
-            <navigator class='add-btn' url="/pages/goods/goods">选择</navigator>
+            <navigator hover-class="none" class='add-btn' url="/pages/goods/goods"></navigator>
             <input type='text' hidden name='debts' value='{{formData.debts}}'></input>
         </view>
         <!-- <view class='form-group'>

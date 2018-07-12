@@ -76,4 +76,5 @@
 
 .td3 {
     color: #f55860;
+    font-weight: 700;
 }

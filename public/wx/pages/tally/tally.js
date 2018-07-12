@@ -66,9 +66,20 @@ Page({
         var _this = this;
         this.setData({
             formData: e.detail.value
-        })
+        });
         let postData = this.data.formData;
+        if (!this.data.formData.name || !this.data.formData.happen_time || !this.data.checkedDebtsData || this.data.checkedDebtsData.length==0){
+            wx.showModal({
+                title: '',
+                content: '请填写完整相关数据再提交！',
+                showCancel:false
+            });
+            return false;
+        }
         postData.debts=this.data.checkedDebtsData;
+        postData.debts[0].comment = postData.comment || '';
+        postData.debts[0].happen_time = postData.happen_time || 0;
+        postData.debts[0].img_id = postData.img_id || 0;
         // return false
         wx.request({
             url: app.globalData.baseUrl + 'adddebts',
@@ -82,9 +93,12 @@ Page({
                         duration: 2500
                     });
                     // 清空表单
-                    _this.setData({
-                        form_value:""
-                    })                 
+                    this.setData({
+                        form_value:"",
+                        formData:null,
+                        img_id:0,
+                        tempFilePaths:''
+                    })
                 }else{
                     wx.showModal({
                         title: '信息填写有误，请检查！',
@@ -161,15 +175,6 @@ Page({
                         console.log(e)
                     }
                 })
-                // wx.request({
-                //     url: app.globalData.baseUrl + 'upload',
-                //     method: 'POST',
-                //     success: function (res) {
-                //         var data = res.data
-                //         console.log(data)
-                //         //do something
-                //     }
-                // })
             },
             fail:function(e){
                 wx.showModal({

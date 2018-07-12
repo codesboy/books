@@ -7,7 +7,7 @@
 .form-group{
     display: flex;
     align-items: center;
-    margin-top: 20rpx;
+    margin-top: 30rpx;
     border-bottom: 1px solid #ccc;
 }
 .form-group textarea{
@@ -26,11 +26,10 @@
 .form-group picker{
     flex: 1;
 }
-.goods-select{
-     /* justify-content: space-between;  */
-}
+
 .add-btn{
     width: 50%;
+    height: 70rpx;
     /* font-size: 26rpx;
     background: #179B16;
     color: #fff;

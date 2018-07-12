@@ -79,6 +79,7 @@ Page({
                 oldData.unshift(res.data);
                 _this.setData({
                     goodsData: oldData,
+                    checkedData:oldData,
                     inputValue:''
                 });
                 wx.showToast({
@@ -93,12 +94,6 @@ Page({
                     content: e.errMsg,
                     showCancel: false
                 })
-            },
-            complete: function () {
-                wx.stopPullDownRefresh();
-                if (wx.hideLoading) {
-                    wx.hideLoading();
-                }
             }
         });
     },
@@ -106,8 +101,8 @@ Page({
     // 复选框
     checkboxChange: function (e) {
         let index = e.currentTarget.dataset.index;
-        console.log('checkbox发生change事件，携带value值为：', e.detail.value)
-        console.log(e)
+        // console.log('checkbox发生change事件，携带value值为：', e.detail.value)
+        // console.log(e)
         let checked = `checkedData[${index}].checked`
         if (e.detail.value.length>0){//选中状态
             this.setData({
@@ -162,7 +157,7 @@ Page({
     // 确认货物选择
     confirmSelect(){
         let checkedData = this.data.checkedData;
-        console.log(this.data.checkedData)
+        // console.log(this.data.checkedData)
         let arr=[];
         
         let totalMoney =0;//拿货的总金额
@@ -179,11 +174,11 @@ Page({
                 totalMoney += itemMoney
                 arr.push(obj)
             }else{
-                console.log('no')
+                // console.log('no')
             }
         }
         
-        console.log(totalMoney.toFixed(2),arr)
+        // console.log(totalMoney.toFixed(2),arr)
 
         let pages = getCurrentPages();
         let prePage = pages[pages.length-2];//上一页面
@@ -194,7 +189,7 @@ Page({
         wx.navigateBack({
             delta: 1
         })
-        console.log(pages.length)
-        console.log(prePage)
+        // console.log(pages.length)
+        // console.log(prePage)
     }
 })

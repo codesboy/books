@@ -86,7 +86,7 @@ class Customer extends Base{
 
     // 获取所有欠款记录
     public function getAllDebts(){
-        $data = CustomerInfo::with('debts,debts.goods')->order('create_time','desc')->select();
+        $data = CustomerInfo::with(['debts'=>['goods','images']])->order('create_time','desc')->select();
         return $data;
     }
 
@@ -123,7 +123,7 @@ class Customer extends Base{
             ]);
         }
 
-        $info = $file->move( '../uploads');
+        $info = $file->move( './uploads');
         if($info){
             // return $info->getSaveName();
             $url =  $info->getSaveName();

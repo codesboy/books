@@ -3,8 +3,16 @@
 .main {
     width: 90%;
     margin: 0 auto;
+    padding-bottom: 200px;
 }
 
+.add-form{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    background: #eee;
+    z-index: 10;
+}
 .input-section {
     display: flex;
     align-items: center;
@@ -18,6 +26,8 @@
     border: 1px solid #ddd;
     margin: 10rpx 0;
     border-radius: 4rpx;
+    padding-left: 5px;
+    background: #fff;
 }
 
 /* 表格代码   */
@@ -72,30 +82,42 @@
 .checkbox{
     /* display: flex; */
     font-size: 26rpx;
-    /* border-bottom:1px solid #000; */
+    border-bottom:1px dotted #000; 
     padding-bottom: 5px;
-    margin-bottom: 30px;
-    margin-top:30px;
+    /* margin-bottom: 25px; */
+    margin-top:10px;
 }
-.checkbox input{
+.checkbox text{
+    font-size: 30rpx;
+}
+.checkbox .item-inputs{
+    display: flex;
+    justify-content: space-between;
+}
+.checkbox .item-inputs input{
+    height: 25px;
     border:1px solid #ccc;
     margin-top: 8px;
     border-radius: 5px;
+    padding-left: 5px;
 }
 
 /*悬浮按钮*/
 .confirm-btn{
     position: fixed;
+    display: flex;
     right: 10px;
     top: 40%;
-    display: block;
-    width: 50px;
-    height: 50px;
+    /* display: block; */
+    width: 98rpx;
+    height: 98rpx;
     border-radius: 100%;
     background: #1AAD19;
     color: #fff;
-    line-height: 50px;
+    /* line-height: 98rpx; */
     text-align: center;
-    font-size: 24rpx;
+    font-size: 26rpx;
     z-index: 9;
+    flex-direction: column;
+    justify-content: center;
 }

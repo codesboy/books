@@ -49,3 +49,7 @@
     font-size: 28rpx;
     color: #f55860;
 }
+.td image{
+    width: 60rpx;
+    height: 60rpx;
+}

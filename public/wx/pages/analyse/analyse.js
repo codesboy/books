@@ -81,12 +81,22 @@ Page({
 
     },
 
-    // 查询、
+    // 查询
     formSubmit: function(e) {
-        let searchKey = e.detail.value;
+        let searchKey = e.detail.value.search_key;
+        // console.log(searchKey)
+        if (searchKey==''){
+            wx.showModal({
+                title: '',
+                content: '查询关键字不能为空！',
+                showCancel:false
+            });
+            return false;
+        };
+
         let data = this.data.data;
         if (data) {
-            var rs = this.search(data, searchKey.search_key);
+            var rs = this.search(data, searchKey);
             if(rs){
                 this.setData({
                     searchData: rs,
