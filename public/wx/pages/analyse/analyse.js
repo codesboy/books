@@ -11,7 +11,8 @@ Page({
         last_debts: 0, //总欠款金额
         searchData: null, //查询出来的数据
         searchLastDebts:null,
-        form_value:""
+        form_value:"",
+        total:0,//合计欠款金额
     },
     onShow: function() {
         this.loadData();
@@ -27,6 +28,7 @@ Page({
                     data: res.data,
                     last_debts: this.dataOperation(res.data)
                 });
+                this.total();
                 // console.log(this.dataOperation(res.data))
                 // this.dataOp600eration(res.data)
 
@@ -148,7 +150,18 @@ Page({
             })
         }
         
-    }
+    },
+
+    // 合计
+    total(){
+        const arr = this.data.last_debts;
+        let t = arr.reduce((total,curr)=>{
+            return total+=parseFloat(curr)
+        },0)
+        this.setData({
+            total:t,
+        })
+    },
 
 
 })

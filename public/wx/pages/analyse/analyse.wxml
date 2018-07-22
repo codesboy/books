@@ -30,6 +30,13 @@
             <view class="th">总欠款金额</view>
             <view class="th">登记时间</view>
             <view class="th">操作</view>
+        </view>        
+        <view class='tr total'>
+            <view class='td'>合计</view>
+            <view class='td' style='border-right:0'>{{data.length}}人</view>
+            <view class='td' style='border-right:0'>{{total}}元</view>
+            <view class='td' style='border-right:0'></view>
+            <view class='td'></view>
         </view>
         <view class="tr" wx:key="index" wx:for="{{data}}">
             <view class="td">{{data[index].name}}</view>

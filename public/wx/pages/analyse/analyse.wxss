@@ -51,7 +51,9 @@
     width: 100%;
     display: table-row;
 }
-
+.total .td{
+    color: #0000FF;
+}
 .th, .td {
     width: 20%;
     display: table-cell;
